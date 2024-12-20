@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+// Fungsi untuk menghitung nilai f(x) = x^2 - 2x + 5
+int f(int x) {
+    return x * x - 2 * x + 5;
+}
+
+// PROGRAM UTAMA
+int main() {
+    int A, B;
+
+    // Input nilai A dan B
+    cout << "Masukkan A: ";
+    cin >> A;
+    cout << "Masukkan B: ";
+    cin >> B;
+
+    // Validasi input
+    if (A > B) {
+        cout << "A harus lebih kecil atau sama dengan B!" << endl;
+        return 1;
+    }
+
+    // Menuliskan semua nilai dari f(A), f(A+1), ..., f(B)
+    for (int i = A; i <= B; i++) {
+        cout << "f(" << i << ") = " << f(i) << endl;
+    }
+
+    return 0;
+}
