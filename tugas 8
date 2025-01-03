@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath>
+#include <fstream>  // Untuk bekerja dengan file
+using namespace std;
+
+int main() {
+    // Deklarasi variabel untuk koefisien a, b, c dan diskriminan
+    double a, b, c, D, x1, x2;
+
+    // Meminta input koefisien a, b, dan c
+    cout << "Masukkan nilai koefisien a: ";
+    cin >> a;
+    cout << "Masukkan nilai koefisien b: ";
+    cin >> b;
+    cout << "Masukkan nilai koefisien c: ";
+    cin >> c;
+
+    // Validasi jika a = 0, bukan persamaan kuadrat
+    if (a == 0) {
+        cout << "Ini bukan persamaan kuadrat karena a = 0." << endl;
+    } else {
+        // Menghitung diskriminan D
+        D = b * b - 4 * a * c;
+
+        // Membuka file untuk menyimpan hasil
+        ofstream hasilFile("hasil_persamaan.txt");
+
+        // Memeriksa diskriminan dan menghitung akar-akar persamaan
+        if (D > 0) {
+            // Dua akar real berbeda
+            x1 = (-b + sqrt(D)) / (2 * a);
+            x2 = (-b - sqrt(D)) / (2 * a);
+            hasilFile << "Diskriminan (D) = " << D << endl;
+            hasilFile << "Akar-akar persamaan kuadrat: x1 = " << x1 << " dan x2 = " << x2 << endl;
+        } else if (D == 0) {
+            // Satu akar real (akar kembar)
+            x1 = -b / (2 * a);
+            hasilFile << "Diskriminan (D) = " << D << endl;
+            hasilFile << "Akar-akar persamaan kuadrat: x1 = x2 = " << x1 << endl;
+        } else {
+            // Tidak ada akar real
+            hasilFile << "Diskriminan (D) = " << D << endl;
+            hasilFile << "Persamaan kuadrat tidak memiliki akar real." << endl;
+        }
+
+        // Menutup file
+        hasilFile.close();
+
+        // Menampilkan pesan bahwa hasil telah disimpan di file
+        cout << "Hasil telah disimpan dalam file 'hasil_persamaan.txt'." << endl;
+    }
+
+    return 0;
+}
